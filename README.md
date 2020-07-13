@@ -1,5 +1,5 @@
 # Overview
-Obtains a refresh token for a AzureAD-authenticated Windows user (i.e. the machine is joined to AzureAD and a user logs in with their AzureAD account). An attacker can then use the token to authenticate to AzureAD as that user.
+Obtains a refresh token for an Azure-AD-authenticated Windows user (i.e. the machine is joined to Azure AD and a user logs in with their Azure AD account). An attacker can then use the token to authenticate to Azure AD as that user.
 
 
 # Usage
@@ -21,8 +21,6 @@ DONE
 4. F12 (Chrome dev tools) -> Application -> Cookies
 5. Delete all cookies and then add one named `x-ms-RefreshTokenCredential` and set its value to the JSON Web Token(JWT) in the `Data` field that RequestAADRefreshToken.exe output
 6. Refresh the page (or visit https://login.microsoftonline.com/login.srf again) and you'll be logged it
-
-Note: Exploitation here is only against the browser. It's likely, however, that this can be used with other applications to access different resource (e.g. the AzureAD cmdlets).
 
 
 # References
