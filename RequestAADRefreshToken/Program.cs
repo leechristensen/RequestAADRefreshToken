@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace RequestAADSamlRefreshToken
 {
@@ -99,7 +100,8 @@ namespace RequestAADSamlRefreshToken
                     uris = args;
 
                 Console.WriteLine("Requesting cookies for the following URIs: " + String.Join(",", uris));
-                Console.WriteLine($"PID  : {Process.GetCurrentProcess().Id}\n");
+                Console.WriteLine($"Process    : {Process.GetCurrentProcess().Id}");
+                Console.WriteLine($"Thread ID  : {AppDomain.GetCurrentThreadId()}\n");
 
                 foreach (var uri in uris)
                 {
