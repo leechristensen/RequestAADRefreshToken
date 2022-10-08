@@ -20,7 +20,7 @@ DONE
 3. Clear your browser cookies and go to https://login.microsoftonline.com/login.srf
 4. F12 (Chrome dev tools) -> Application -> Cookies
 5. Delete all cookies and then add one named `x-ms-RefreshTokenCredential` and set its value to the JSON Web Token(JWT) in the `Data` field that RequestAADRefreshToken.exe output
-6. Refresh the page (or visit https://login.microsoftonline.com/login.srf again) and you'll be logged it
+6. Refresh the page (or visit https://login.microsoftonline.com/login.srf again) and you'll be logged in
 
 
 # References
