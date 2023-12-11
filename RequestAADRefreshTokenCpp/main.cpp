@@ -2,6 +2,8 @@
 #include <proofofpossessioncookieinfo.h>
 #include <windows.h>
 
+// compile with Visual Studio or clang -lole32 -s main.cpp -o requestaadrefreshtoken.exe
+
 int main()
 {
 	LPCWSTR uri = L"https://login.microsoftonline.com/";
@@ -38,16 +40,16 @@ int main()
 
 	if (cookieCount == 0)
 	{
-		wprintf(L"No cookies for he URI\n");
+		wprintf(L"No cookies for the URI: %ls\n", uri);
 		return 0;
 	}
 
 	for (DWORD i = 0; i < cookieCount; i++)
 	{
-		wprintf(L"Name: %s\n", cookies[i].name);
-		wprintf(L"Data: %s\n", cookies[i].data);
+		wprintf(L"Name: %ls\n", cookies[i].name);
+		wprintf(L"Data: %ls\n", cookies[i].data);
 		wprintf(L"Flags: %x\n", cookies[i].flags);
-		wprintf(L"P3PHeader: %s\n\n", cookies[i].p3pHeader);
+		wprintf(L"P3PHeader: %ls\n\n", cookies[i].p3pHeader);
 	}
 
 	FreeProofOfPossessionCookieInfoArray(cookies, cookieCount);
