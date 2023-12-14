@@ -4,9 +4,11 @@
 
 // compile with Visual Studio or clang -lole32 -s main.cpp -o requestaadrefreshtoken.exe
 
+#define BUFSIZE 2048
+
 int main()
 {
-	LPCWSTR uri = L"https://login.microsoftonline.com/";
+	wchar_t uri[2048];
 	DWORD cookieCount = 0;
 	ProofOfPossessionCookieInfo* cookies;
 	IProofOfPossessionCookieInfoManager* popCookieManager;
@@ -15,6 +17,16 @@ int main()
 
 	CLSIDFromString(L"{A9927F85-A304-4390-8B23-A75F1C668600}", &CLSID_ProofOfPossessionCookieInfoManager);
 	IIDFromString(L"{CDAECE56-4EDF-43DF-B113-88E4556FA1BB}", &IID_IProofOfPossessionCookieInfoManager);
+
+	memset(uri, 0x00, sizeof(uri));
+
+	if ( argc < 2) {
+		_snwprintf_s(uri, BUFSIZE, BUFSIZE, L"%ls", L"https://login.microsoftonline.com/common/oauth2/authorize");
+	} else {
+		mbstowcs(uri, argv[1], BUFSIZE);
+	}
+
+	wprintf(L"Using URI: %ls\n", uri);
 
 	HRESULT hr = CoInitialize(NULL);
 	if (FAILED(hr))
